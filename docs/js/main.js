@@ -116,7 +116,7 @@ $('a.btn-mode').click(function (e) {
 });
 function cunliStyle(f) {
   var p = f.getProperties();
-  var color = 'rgba(255,255,255,0.5)';
+  var color = 'rgba(255,255,255,0.3)';
   var strokeWidth = 1;
   var strokeColor = 'rgba(0,0,0,0.3)';
   if (f === currentFeature) {
@@ -130,41 +130,41 @@ function cunliStyle(f) {
           && vote[p.VILLCODE]['18_agree'] > vote[p.VILLCODE]['18_disagree']
           && vote[p.VILLCODE]['19_agree'] > vote[p.VILLCODE]['19_disagree']
           && vote[p.VILLCODE]['20_agree'] > vote[p.VILLCODE]['20_disagree']) {
-          color = 'rgba(0,0,255,0.5)'; //blue
+          color = 'rgba(0,0,255,0.3)'; //blue
         }
         if (vote[p.VILLCODE]['17_agree'] < vote[p.VILLCODE]['17_disagree']
           && vote[p.VILLCODE]['18_agree'] < vote[p.VILLCODE]['18_disagree']
           && vote[p.VILLCODE]['19_agree'] < vote[p.VILLCODE]['19_disagree']
           && vote[p.VILLCODE]['20_agree'] < vote[p.VILLCODE]['20_disagree']) {
-          color = 'rgba(27,148,49,0.5)'; //green
+          color = 'rgba(27,148,49,0.3)'; //green
         }
         break;
       case '17':
         if(vote[p.VILLCODE]['17_agree'] > vote[p.VILLCODE]['17_disagree']) {
-          color = 'rgba(0,0,255,0.5)'; //blue
+          color = 'rgba(0,0,255,0.3)'; //blue
         } else {
-          color = 'rgba(27,148,49,0.5)'; //green
+          color = 'rgba(27,148,49,0.3)'; //green
         }
         break;
       case '18':
         if(vote[p.VILLCODE]['18_agree'] > vote[p.VILLCODE]['18_disagree']) {
-          color = 'rgba(0,0,255,0.5)'; //blue
+          color = 'rgba(0,0,255,0.3)'; //blue
         } else {
-          color = 'rgba(27,148,49,0.5)'; //green
+          color = 'rgba(27,148,49,0.3)'; //green
         }
         break;
       case '19':
         if(vote[p.VILLCODE]['19_agree'] > vote[p.VILLCODE]['19_disagree']) {
-          color = 'rgba(0,0,255,0.5)'; //blue
+          color = 'rgba(0,0,255,0.3)'; //blue
         } else {
-          color = 'rgba(27,148,49,0.5)'; //green
+          color = 'rgba(27,148,49,0.3)'; //green
         }
         break;
       case '20':
         if(vote[p.VILLCODE]['20_agree'] > vote[p.VILLCODE]['20_disagree']) {
-          color = 'rgba(0,0,255,0.5)'; //blue
+          color = 'rgba(0,0,255,0.3)'; //blue
         } else {
-          color = 'rgba(27,148,49,0.5)'; //green
+          color = 'rgba(27,148,49,0.3)'; //green
         }
         break;
     }
