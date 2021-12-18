@@ -32,6 +32,24 @@ $.getJSON('data.json', {}, function (c) {
   cunli.getSource().refresh();
 });
 
+var baseLayer = new ol.layer.Tile({
+  source: new ol.source.WMTS({
+    matrixSet: 'EPSG:3857',
+    format: 'image/png',
+    url: 'https://wmts.nlsc.gov.tw/wmts',
+    layer: 'EMAP',
+    tileGrid: new ol.tilegrid.WMTS({
+      origin: ol.extent.getTopLeft(projectionExtent),
+      resolutions: resolutions,
+      matrixIds: matrixIds
+    }),
+    style: 'default',
+    wrapX: true,
+    attributions: '<a href="http://maps.nlsc.gov.tw/" target="_blank">國土測繪圖資服務雲</a>'
+  }),
+  opacity: 0.8
+});
+
 var cunli = new ol.layer.Vector({
   source: new ol.source.Vector({
     url: 'https://kiang.github.io/taiwan_basecode/cunli/topo/20210324.json',
@@ -43,7 +61,7 @@ var cunli = new ol.layer.Vector({
 });
 
 var map = new ol.Map({
-  layers: [cunli],
+  layers: [baseLayer, cunli],
   target: 'map',
   view: appView,
   controls: ol.control.defaults({ attribution: false }).extend([attribution])
@@ -98,7 +116,7 @@ $('a.btn-mode').click(function (e) {
 });
 function cunliStyle(f) {
   var p = f.getProperties();
-  var color = '#ffffff';
+  var color = 'rgba(255,255,255,0.5)';
   var strokeWidth = 1;
   var strokeColor = 'rgba(0,0,0,0.3)';
   if (f === currentFeature) {
@@ -112,49 +130,46 @@ function cunliStyle(f) {
           && vote[p.VILLCODE]['18_agree'] > vote[p.VILLCODE]['18_disagree']
           && vote[p.VILLCODE]['19_agree'] > vote[p.VILLCODE]['19_disagree']
           && vote[p.VILLCODE]['20_agree'] > vote[p.VILLCODE]['20_disagree']) {
-          color = '#000095'; //blue
+          color = 'rgba(0,0,255,0.5)'; //blue
         }
         if (vote[p.VILLCODE]['17_agree'] < vote[p.VILLCODE]['17_disagree']
           && vote[p.VILLCODE]['18_agree'] < vote[p.VILLCODE]['18_disagree']
           && vote[p.VILLCODE]['19_agree'] < vote[p.VILLCODE]['19_disagree']
           && vote[p.VILLCODE]['20_agree'] < vote[p.VILLCODE]['20_disagree']) {
-          color = '#1b9431'; //green
+          color = 'rgba(27,148,49,0.5)'; //green
         }
         break;
       case '17':
         if(vote[p.VILLCODE]['17_agree'] > vote[p.VILLCODE]['17_disagree']) {
-          color = '#000095'; //blue
+          color = 'rgba(0,0,255,0.5)'; //blue
         } else {
-          color = '#1b9431'; //green
+          color = 'rgba(27,148,49,0.5)'; //green
         }
         break;
       case '18':
         if(vote[p.VILLCODE]['18_agree'] > vote[p.VILLCODE]['18_disagree']) {
-          color = '#000095'; //blue
+          color = 'rgba(0,0,255,0.5)'; //blue
         } else {
-          color = '#1b9431'; //green
+          color = 'rgba(27,148,49,0.5)'; //green
         }
         break;
       case '19':
         if(vote[p.VILLCODE]['19_agree'] > vote[p.VILLCODE]['19_disagree']) {
-          color = '#000095'; //blue
+          color = 'rgba(0,0,255,0.5)'; //blue
         } else {
-          color = '#1b9431'; //green
+          color = 'rgba(27,148,49,0.5)'; //green
         }
         break;
       case '20':
         if(vote[p.VILLCODE]['20_agree'] > vote[p.VILLCODE]['20_disagree']) {
-          color = '#000095'; //blue
+          color = 'rgba(0,0,255,0.5)'; //blue
         } else {
-          color = '#1b9431'; //green
+          color = 'rgba(27,148,49,0.5)'; //green
         }
         break;
     }
   }
-  var textColor = '#ffffff';
-  if (color === '#ffffff') {
-    textColor = '#000000';
-  }
+  var textColor = '#000000';
 
   var baseStyle = new ol.style.Style({
     stroke: new ol.style.Stroke({
