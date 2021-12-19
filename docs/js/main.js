@@ -117,11 +117,16 @@ $('a.btn-mode').click(function (e) {
 function cunliStyle(f) {
   var p = f.getProperties();
   var color = 'rgba(255,255,255,0.3)';
-  var strokeWidth = 1;
+  var strokeWidth = 0;
   var strokeColor = 'rgba(0,0,0,0.3)';
+  var cunliStroke = null;
   if (f === currentFeature) {
     strokeColor = 'rgba(255,0,0,1)';
     strokeWidth = 5;
+    cunliStroke = new ol.style.Stroke({
+      color: strokeColor,
+      width: strokeWidth
+    });
   }
   if (vote[p.VILLCODE]) {
     switch (colorMode) {
@@ -172,10 +177,7 @@ function cunliStyle(f) {
   var textColor = '#000000';
 
   var baseStyle = new ol.style.Style({
-    stroke: new ol.style.Stroke({
-      color: strokeColor,
-      width: strokeWidth
-    }),
+    stroke: cunliStroke,
     fill: new ol.style.Fill({
       color: color
     }),
