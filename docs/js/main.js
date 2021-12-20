@@ -114,12 +114,26 @@ $('a.btn-mode').click(function (e) {
   });
   cunli.getSource().refresh();
 });
+var cunliBorder = false;
+$('a#btn-cunli').click(function (e) {
+  e.preventDefault();
+  cunliBorder = !cunliBorder;
+  cunli.getSource().refresh();
+});
 function cunliStyle(f) {
   var p = f.getProperties();
   var color = 'rgba(255,255,255,0.3)';
   var strokeWidth = 0;
   var strokeColor = 'rgba(0,0,0,0.3)';
   var cunliStroke = null;
+  if (cunliBorder) {
+    strokeColor = 'rgba(0,0,0,1)';
+    strokeWidth = 1;
+    cunliStroke = new ol.style.Stroke({
+      color: strokeColor,
+      width: strokeWidth
+    });
+  }
   if (f === currentFeature) {
     strokeColor = 'rgba(255,0,0,1)';
     strokeWidth = 5;
@@ -145,28 +159,28 @@ function cunliStyle(f) {
         }
         break;
       case '17':
-        if(vote[p.VILLCODE]['17_agree'] > vote[p.VILLCODE]['17_disagree']) {
+        if (vote[p.VILLCODE]['17_agree'] > vote[p.VILLCODE]['17_disagree']) {
           color = 'rgba(0,0,255,0.3)'; //blue
         } else {
           color = 'rgba(27,148,49,0.3)'; //green
         }
         break;
       case '18':
-        if(vote[p.VILLCODE]['18_agree'] > vote[p.VILLCODE]['18_disagree']) {
+        if (vote[p.VILLCODE]['18_agree'] > vote[p.VILLCODE]['18_disagree']) {
           color = 'rgba(0,0,255,0.3)'; //blue
         } else {
           color = 'rgba(27,148,49,0.3)'; //green
         }
         break;
       case '19':
-        if(vote[p.VILLCODE]['19_agree'] > vote[p.VILLCODE]['19_disagree']) {
+        if (vote[p.VILLCODE]['19_agree'] > vote[p.VILLCODE]['19_disagree']) {
           color = 'rgba(0,0,255,0.3)'; //blue
         } else {
           color = 'rgba(27,148,49,0.3)'; //green
         }
         break;
       case '20':
-        if(vote[p.VILLCODE]['20_agree'] > vote[p.VILLCODE]['20_disagree']) {
+        if (vote[p.VILLCODE]['20_agree'] > vote[p.VILLCODE]['20_disagree']) {
           color = 'rgba(0,0,255,0.3)'; //blue
         } else {
           color = 'rgba(27,148,49,0.3)'; //green
